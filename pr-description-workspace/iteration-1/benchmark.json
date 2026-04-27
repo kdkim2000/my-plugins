@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "skill_name": "pr-description",
+    "skill_path": "E:\\apps\\claude\\my-plugins\\plugins\\my-skills\\skills\\pr-description",
+    "executor_model": "claude-sonnet-4-6",
+    "timestamp": "2026-04-28T00:00:00Z",
+    "evals_run": [1, 2, 3],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "한국어-자연어-입력",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 27.3,
+        "tokens": 16621,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "## Summary 섹션이 존재하고 2문장 이상이다", "passed": true, "evidence": "2문장 존재"},
+        {"text": "## Changes 섹션에 bullet point가 2개 이상 있다", "passed": true, "evidence": "3개 bullet"},
+        {"text": "## How to Test 섹션에 번호가 매겨진 단계가 있다", "passed": true, "evidence": "6단계"},
+        {"text": "출력이 한국어로 작성되었다", "passed": true, "evidence": "한국어"},
+        {"text": "단순 기능 나열이 아닌 변경 이유(왜)가 Summary에 포함되어 있다", "passed": true, "evidence": "UX 개선 목적 명시"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "한국어-자연어-입력",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.2,
+        "passed": 1,
+        "failed": 4,
+        "total": 5,
+        "time_seconds": 38.1,
+        "tokens": 14436,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "## Summary 섹션이 존재하고 2문장 이상이다", "passed": false, "evidence": "Summary 섹션 없음"},
+        {"text": "## Changes 섹션에 bullet point가 2개 이상 있다", "passed": false, "evidence": "Changes 섹션 없음"},
+        {"text": "## How to Test 섹션에 번호가 매겨진 단계가 있다", "passed": false, "evidence": "How to Test 없음"},
+        {"text": "출력이 한국어로 작성되었다", "passed": true, "evidence": "한국어"},
+        {"text": "단순 기능 나열이 아닌 변경 이유(왜)가 Summary에 포함되어 있다", "passed": false, "evidence": "Summary 없음"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "git-diff-입력",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 33.2,
+        "tokens": 17438,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "## Summary 섹션이 존재한다", "passed": true, "evidence": "Summary 존재"},
+        {"text": "## Changes 섹션에 update_profile 관련 항목이 있다", "passed": true, "evidence": "update_profile 명시"},
+        {"text": "## How to Test 섹션이 존재하고 단계가 포함된다", "passed": true, "evidence": "curl 명령 포함 5단계"},
+        {"text": "허용 필드(allowed_fields) 화이트리스트 보안 처리가 언급된다", "passed": true, "evidence": "화이트리스트, allowed_fields 모두 명시"},
+        {"text": "테스트 추가 사실이 Changes 또는 본문에 언급된다", "passed": true, "evidence": "테스트 2건 명시"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "git-diff-입력",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 3,
+        "failed": 2,
+        "total": 5,
+        "time_seconds": 18.8,
+        "tokens": 14878,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "## Summary 섹션이 존재한다", "passed": false, "evidence": "Summary 없음, 변경 사항 요약만"},
+        {"text": "## Changes 섹션에 update_profile 관련 항목이 있다", "passed": true, "evidence": "update_profile 설명 존재"},
+        {"text": "## How to Test 섹션이 존재하고 단계가 포함된다", "passed": false, "evidence": "How to Test 없음"},
+        {"text": "허용 필드(allowed_fields) 화이트리스트 보안 처리가 언급된다", "passed": true, "evidence": "보안 고려 사항 섹션에 화이트리스트 언급"},
+        {"text": "테스트 추가 사실이 Changes 또는 본문에 언급된다", "passed": true, "evidence": "테스트 2건 설명"}
+      ],
+      "notes": ["diff에서 syntax bug(== 누락)를 발견해 버그 노트로 추가 — skill 없이도 코드 분석 능력은 있음"]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "영어-자연어-입력",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 20.6,
+        "tokens": 16249,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "## Summary section exists with 2+ sentences", "passed": true, "evidence": "2 sentences"},
+        {"text": "## Changes mentions dark mode and localStorage", "passed": true, "evidence": "Both mentioned in bullets"},
+        {"text": "## How to Test has numbered steps", "passed": true, "evidence": "7 numbered steps"},
+        {"text": "Output is written in English", "passed": true, "evidence": "All English"},
+        {"text": "localStorage persistence is mentioned as a benefit", "passed": true, "evidence": "Benefit clearly stated"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "영어-자연어-입력",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 3,
+        "failed": 2,
+        "total": 5,
+        "time_seconds": 16.3,
+        "tokens": 14089,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "## Summary section exists with 2+ sentences", "passed": false, "evidence": "Uses ### not ##, only 1 sentence"},
+        {"text": "## Changes mentions dark mode and localStorage", "passed": true, "evidence": "Both mentioned"},
+        {"text": "## How to Test has numbered steps", "passed": false, "evidence": "Uses checkboxes [ ] not numbered steps"},
+        {"text": "Output is written in English", "passed": true, "evidence": "All English"},
+        {"text": "localStorage persistence is mentioned as a benefit", "passed": true, "evidence": "Mentioned as automatic restore"}
+      ],
+      "notes": ["Added 'How It Works' section — extra detail not in the template but useful"]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 27.0, "stddev": 5.2, "min": 20.6, "max": 33.2},
+      "tokens": {"mean": 16769, "stddev": 408, "min": 16249, "max": 17438}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.47, "stddev": 0.19, "min": 0.2, "max": 0.6},
+      "time_seconds": {"mean": 24.4, "stddev": 10.2, "min": 16.3, "max": 38.1},
+      "tokens": {"mean": 14468, "stddev": 327, "min": 14089, "max": 14878}
+    },
+    "delta": {
+      "pass_rate": "+0.53",
+      "time_seconds": "+2.6",
+      "tokens": "+2301"
+    }
+  },
+  "notes": [
+    "without_skill은 Summary/How to Test 섹션을 일관되게 누락 — 가장 큰 차이점",
+    "내용의 정확성(코드 분석, 언어 감지)은 skill 없이도 잘 됨 — skill 가치는 '구조 강제'에 있음",
+    "eval-2 without_skill이 diff의 syntax bug를 발견한 점은 흥미로움 — skill은 이 동작을 명시하지 않음",
+    "without_skill이 token을 약 2300개 덜 사용 — skill 로딩 비용이 있지만 구조 품질로 상쇄"
+  ]
+}

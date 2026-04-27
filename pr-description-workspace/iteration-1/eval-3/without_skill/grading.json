@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "## Summary section exists with 2+ sentences",
+      "passed": false,
+      "evidence": "Uses ### Summary (not ##) under ## Add Dark Mode Support. Content is 1 sentence only."
+    },
+    {
+      "text": "## Changes section has bullet points mentioning dark mode and localStorage",
+      "passed": true,
+      "evidence": "### Changes has bullets mentioning dark mode styles and localStorage persistence"
+    },
+    {
+      "text": "## How to Test section has numbered steps",
+      "passed": false,
+      "evidence": "### Testing uses checkboxes [ ] not numbered steps. Section heading is also ###, not ##"
+    },
+    {
+      "text": "Output is written in English",
+      "passed": true,
+      "evidence": "Entire output in English"
+    },
+    {
+      "text": "localStorage persistence is mentioned as a benefit or feature",
+      "passed": true,
+      "evidence": "'saved to localStorage so it is automatically restored on subsequent visits'"
+    }
+  ],
+  "summary": {"passed": 3, "failed": 2, "total": 5, "pass_rate": 0.6}
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "## Summary 섹션이 존재하고 2문장 이상이다",
+      "passed": true,
+      "evidence": "## Summary 존재, '로그인 페이지에 이메일 형식 검증...' 등 2문장"
+    },
+    {
+      "text": "## Changes 섹션에 bullet point가 2개 이상 있다",
+      "passed": true,
+      "evidence": "이메일 유효성 검사 / 비밀번호 최소 길이 검사 / 에러 메시지 분리 — 3개 bullet"
+    },
+    {
+      "text": "## How to Test 섹션에 번호가 매겨진 단계가 있다",
+      "passed": true,
+      "evidence": "1~6 단계 번호 목록, 구체적인 입력값 예시 포함"
+    },
+    {
+      "text": "출력이 한국어로 작성되었다",
+      "passed": true,
+      "evidence": "전체 내용 한국어"
+    },
+    {
+      "text": "단순 기능 나열이 아닌 변경 이유(왜)가 Summary에 포함되어 있다",
+      "passed": true,
+      "evidence": "'입력 오류를 빠르게 파악하고 수정할 수 있도록 UX를 개선합니다' — 목적 명시"
+    }
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0}
+}

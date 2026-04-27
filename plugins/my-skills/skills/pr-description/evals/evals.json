@@ -1,0 +1,44 @@
+{
+  "skill_name": "pr-description",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "로그인 페이지에서 이메일 형식 검증 추가했고, 비밀번호 최소 8자 체크도 넣었어. 에러 메시지도 각각 다르게 표시되도록 했고. PR 설명 써줘",
+      "expected_output": "한국어로 작성된 PR 본문. Summary(무엇+왜), Changes(bullet), How to Test(단계별), 필요시 Notes 포함",
+      "files": [],
+      "expectations": [
+        "## Summary 섹션이 존재하고 2문장 이상이다",
+        "## Changes 섹션에 bullet point가 2개 이상 있다",
+        "## How to Test 섹션에 번호가 매겨진 단계가 있다",
+        "출력이 한국어로 작성되었다",
+        "단순 기능 나열이 아닌 변경 이유(왜)가 Summary에 포함되어 있다"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "아래 git diff 보고 PR 설명 작성해줘:\n\n```diff\ndiff --git a/src/api/users.py b/src/api/users.py\nindex a3f1c2d..b8e4f91 100644\n--- a/src/api/users.py\n+++ b/src/api/users.py\n@@ -45,6 +45,18 @@ class UserAPI:\n     def get_user(self, user_id: int):\n         return self.db.query(User).filter(User.id == user_id).first()\n \n+    def update_profile(self, user_id: int, data: dict):\n+        user = self.get_user(user_id)\n+        if not user:\n+            raise NotFoundException(f\"User {user_id} not found\")\n+        allowed_fields = {'display_name', 'bio', 'avatar_url'}\n+        update_data = {k: v for k, v in data.items() if k in allowed_fields}\n+        for key, value in update_data.items():\n+            setattr(user, key, value)\n+        self.db.commit()\n+        return user\n+\ndiff --git a/tests/test_users.py b/tests/test_users.py\nindex c12d3e4..f9a2b31 100644\n--- a/tests/test_users.py\n+++ b/tests/test_users.py\n@@ -78,3 +78,24 @@ def test_get_user_not_found():\n     response = client.get(\"/users/9999\")\n     assert response.status_code == 404\n+\n+def test_update_profile_success():\n+    response = client.patch(\"/users/1/profile\",\n+        json={\"display_name\": \"New Name\", \"bio\": \"Hello\"}\n+    )\n+    assert response.status_code == 200\n+    assert response.json()[\"display_name\"] == \"New Name\"\n+\n+def test_update_profile_invalid_field():\n+    response = client.patch(\"/users/1/profile\",\n+        json={\"email\": \"hack@evil.com\"}\n+    )\n+    assert response.status_code == 200\n+    # email should not be updated\n+    user = client.get(\"/users/1\").json()\n+    assert user[\"email\"] != \"hack@evil.com\"\n```",
+      "expected_output": "코드 분석 기반 PR 본문. 허용 필드 화이트리스트 보안 처리, 테스트 케이스 추가 등 diff에서 읽어낸 내용 포함",
+      "files": [],
+      "expectations": [
+        "## Summary 섹션이 존재한다",
+        "## Changes 섹션에 update_profile 또는 프로필 업데이트 관련 항목이 있다",
+        "## How to Test 섹션이 존재하고 단계가 포함된다",
+        "허용 필드(allowed_fields) 화이트리스트 보안 처리가 언급된다",
+        "테스트 추가 사실이 Changes 또는 본문에 언급된다"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Added dark mode support to the app. User's preference is saved to localStorage so it persists across sessions. Also added a toggle button in the header. Please write a PR description.",
+      "expected_output": "영어로 작성된 PR 본문. Summary, Changes(dark mode, localStorage, toggle button), How to Test 포함",
+      "files": [],
+      "expectations": [
+        "## Summary section exists with 2+ sentences",
+        "## Changes section has bullet points mentioning dark mode and localStorage",
+        "## How to Test section has numbered steps",
+        "Output is written in English",
+        "localStorage persistence is mentioned as a benefit or feature"
+      ]
+    }
+  ]
+}

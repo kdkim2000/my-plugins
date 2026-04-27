@@ -11,8 +11,8 @@
   "plugins": [
     {
       "name": "my-skills",
-      "description": "나의 커스텀 스킬 모음 — 이모지 요약봇, 빈 템플릿 등",
-      "version": "1.0.0",
+      "description": "나의 커스텀 스킬 모음 — 이모지 요약봇, PR 설명 작성기, 빈 템플릿 등",
+      "version": "1.1.0",
       "source": "./plugins/my-skills",
       "category": "productivity",
       "keywords": ["skills", "emoji", "korean", "productivity", "template"],
