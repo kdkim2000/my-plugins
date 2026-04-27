@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "## Summary 섹션이 존재한다",
+      "passed": true,
+      "evidence": "## Summary 존재, 화이트리스트 방식 및 보안 목적 설명 포함"
+    },
+    {
+      "text": "## Changes 섹션에 update_profile 또는 프로필 업데이트 관련 항목이 있다",
+      "passed": true,
+      "evidence": "UserAPI.update_profile 메서드 추가 항목 명시"
+    },
+    {
+      "text": "## How to Test 섹션이 존재하고 단계가 포함된다",
+      "passed": true,
+      "evidence": "curl 명령어 포함 5단계 + pytest 실행 명령 제공"
+    },
+    {
+      "text": "허용 필드(allowed_fields) 화이트리스트 보안 처리가 언급된다",
+      "passed": true,
+      "evidence": "Summary와 Notes 모두에서 '화이트리스트', 'allowed_fields' 명시"
+    },
+    {
+      "text": "테스트 추가 사실이 Changes 또는 본문에 언급된다",
+      "passed": true,
+      "evidence": "tests/test_users.py 2건 테스트 추가 명시"
+    }
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0}
+}
