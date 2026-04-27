@@ -1,0 +1,10 @@
+{
+  "name": "my-skills",
+  "description": "나의 커스텀 스킬 모음",
+  "version": "1.0.0",
+  "author": {
+    "name": "kdkim2000"
+  },
+  "keywords": ["skills", "emoji", "korean", "productivity", "template"],
+  "license": "MIT"
+}

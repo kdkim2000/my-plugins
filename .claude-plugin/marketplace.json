@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "my-plugins",
+  "owner": {
+    "name": "kdkim2000"
+  },
+  "metadata": {
+    "description": "kdkim2000의 커스텀 Claude Code 플러그인 모음",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "my-skills",
+      "description": "나의 커스텀 스킬 모음 — 이모지 요약봇, 빈 템플릿 등",
+      "version": "1.0.0",
+      "source": "./plugins/my-skills",
+      "category": "productivity",
+      "keywords": ["skills", "emoji", "korean", "productivity", "template"],
+      "tags": ["skills", "emoji", "korean", "template"]
+    }
+  ]
+}
